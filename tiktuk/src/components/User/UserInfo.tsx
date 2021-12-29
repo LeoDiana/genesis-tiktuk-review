@@ -1,30 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
-  Avatar, Card, CardHeader, Typography, Grid, CardContent,
-} from '@mui/material';
-import { getUserInfo } from '../../api/apiCalls';
-import { shortenNumber } from '../../common/utils';
+  Avatar,
+  Card,
+  CardHeader,
+  Typography,
+  Grid,
+  CardContent,
+} from "@mui/material";
+import { getUserInfo } from "../../api/apiCalls";
+import { shortenNumber } from "../../common/utils";
 
 interface UserInfoProps {
-    username: string,
+  username: string;
 }
 
 interface UserInfoState {
-    uniqueId: string,
-    nickname: string,
-    signature: string,
-    avatar: string,
-    followerCount:number,
-    followingCount:number,
-    heartCount:number
+  uniqueId: string;
+  nickname: string;
+  signature: string;
+  avatar: string;
+  followerCount: number;
+  followingCount: number;
+  heartCount: number;
 }
 
-const UserInfo = (props : UserInfoProps) => {
+const UserInfo = (props: UserInfoProps) => {
   const initialUserInfoState = {
-    uniqueId: '',
-    nickname: '',
-    signature: '',
-    avatar: '',
+    uniqueId: "",
+    nickname: "",
+    signature: "",
+    avatar: "",
     followerCount: 0,
     followingCount: 0,
     heartCount: 0,
@@ -53,39 +58,44 @@ const UserInfo = (props : UserInfoProps) => {
   return (
     <Card sx={{ maxWidth: 500 }}>
       <CardHeader
-        avatar={(
-          <Avatar
-            alt={userInfo.nickname}
-            src={userInfo.avatar}
-          />
-        )}
-        title={(
+        avatar={<Avatar alt={userInfo.nickname} src={userInfo.avatar} />}
+        title={
           <Typography align="left" fontWeight={600}>
             {userInfo.uniqueId}
           </Typography>
-        )}
-        subheader={(
-          <Typography align="left">
-            {userInfo.nickname}
-          </Typography>
-        )}
+        }
+        subheader={<Typography align="left">{userInfo.nickname}</Typography>}
       />
       <CardContent>
         <Grid container justifyContent="space-around">
           <Grid item xs={4} alignItems="center" container direction="column">
-            <Typography fontWeight={600}>{shortenNumber(userInfo.followingCount)}</Typography>
+            <Typography fontWeight={600}>
+              {Intl.NumberFormat("en", { notation: "compact" }).format(
+                userInfo.followingCount
+              )}
+            </Typography>
             <Typography>Following</Typography>
           </Grid>
           <Grid item xs={4} alignItems="center" container direction="column">
-            <Typography fontWeight={600}>{shortenNumber(userInfo.followerCount)}</Typography>
+            <Typography fontWeight={600}>
+              {Intl.NumberFormat("en", { notation: "compact" }).format(
+                userInfo.followerCount
+              )}
+            </Typography>
             <Typography>Followers</Typography>
           </Grid>
           <Grid item xs={4} alignItems="center" container direction="column">
-            <Typography fontWeight={600}>{shortenNumber(userInfo.heartCount)}</Typography>
+            <Typography fontWeight={600}>
+              {Intl.NumberFormat("en", { notation: "compact" }).format(
+                userInfo.heartCount
+              )}
+            </Typography>
             <Typography>Likes</Typography>
           </Grid>
         </Grid>
-        <Typography marginTop={2} whiteSpace="pre-line">{userInfo.signature}</Typography>
+        <Typography marginTop={2} whiteSpace="pre-line">
+          {userInfo.signature}
+        </Typography>
       </CardContent>
     </Card>
   );

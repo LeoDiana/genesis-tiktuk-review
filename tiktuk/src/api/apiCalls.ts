@@ -15,7 +15,6 @@ const GET_DATA_FROM_API = false;
 const getTrendingFeedAPI = async (): Promise<TrendingFeedItem[]> => {
   try {
     const response = await axios.get('/trending/feed');
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -26,7 +25,6 @@ const getTrendingFeedAPI = async (): Promise<TrendingFeedItem[]> => {
 const getUserFeedAPI = async (username: string): Promise<UserFeedItem[]> => {
   try {
     const response = await axios.get(`/user/feed/${username}`);
-    console.log(response.data.itemList);
     return response.data.itemList;
   } catch (error) {
     console.error(error);
@@ -37,7 +35,6 @@ const getUserFeedAPI = async (username: string): Promise<UserFeedItem[]> => {
 const getUserInfoAPI = async (username: string): Promise<UserInfoResponse> => {
   try {
     const response = await axios.get(`/user/info/${username}`);
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error(error);

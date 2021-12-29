@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import { Typography, Pagination, Grid } from '@mui/material';
-import Post from '../components/Post/Post';
-import { getTrendingFeed } from '../api/apiCalls';
-import { TrendingFeedItem } from '../common/types';
+import { Typography, Pagination, Grid } from "@mui/material";
+import Post from "../components/Post/Post";
+import { getTrendingFeed } from "../api/apiCalls";
+import { TrendingFeedItem } from "../common/types";
 
 interface FeedProp {
-  postsPerPage: number,
-  postsCount: number
+  postsPerPage: number;
+  postsCount: number;
 }
 
 const Feed = ({ postsPerPage, postsCount }: FeedProp) => {
   const [posts, setPosts] = useState<TrendingFeedItem[]>([]);
-  const [playingVideo, setPlayingVideo] = useState('');
+  const [playingVideo, setPlayingVideo] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const Feed = ({ postsPerPage, postsCount }: FeedProp) => {
   }, []);
 
   const onVideoClick = (id: string) => {
-    setPlayingVideo((currId) => (currId === id ? '' : id));
+    setPlayingVideo((currId) => (currId === id ? "" : id));
   };
 
   const videoinView = (id: string) => {
@@ -45,7 +45,7 @@ const Feed = ({ postsPerPage, postsCount }: FeedProp) => {
                   {...post}
                   onClick={onVideoClick}
                   inView={videoinView}
-                  playing={!!(playingVideo === post.id)}
+                  playing={playingVideo === post.id}
                   videoId={post.id}
                 />
               </Grid>

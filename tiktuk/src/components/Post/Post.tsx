@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react';
 
 import {
@@ -13,7 +12,6 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CommentIcon from '@mui/icons-material/Comment';
 import ReactPlayer from 'react-player';
 import InView, { useInView } from 'react-intersection-observer';
-import { shortenNumber } from '../../common/utils';
 import UserHeader from '../User/UserHeader';
 import { AuthorMeta, Hashtag } from '../../common/types';
 import Preloader from '../Preloader/Preloader';
@@ -27,9 +25,7 @@ interface PostProp {
   commentCount: number;
   hashtags: Hashtag[];
   playing: boolean;
-  // eslint-disable-next-line no-unused-vars
   onClick: (videoId: string)=>void;
-  // eslint-disable-next-line no-unused-vars
   inView: (videoId: string)=>void;
   [others: string]: any;
 }
@@ -81,11 +77,11 @@ const Post = (postData: PostProp) => {
               >
                 <Grid item container xs="auto">
                   <FavoriteIcon />
-                  <Typography>{shortenNumber(diggCount)}</Typography>
+                  <Typography>{Intl.NumberFormat('en', {notation: 'compact'}).format(diggCount)}</Typography>
                 </Grid>
                 <Grid item container xs="auto">
                   <CommentIcon />
-                  <Typography>{shortenNumber(commentCount)}</Typography>
+                  <Typography>{Intl.NumberFormat('en', {notation: 'compact'}).format(diggCount)}</Typography>
                 </Grid>
               </Grid>
               <Grid
@@ -95,7 +91,7 @@ const Post = (postData: PostProp) => {
                 justifyContent="center"
                 spacing={1}
               >
-                {hashtags.length > 0 && hashtags.map((hashtag) => (
+                {hashtags.length && hashtags.map((hashtag) => (
                   <Grid item key={hashtag.name}>
                     <Chip variant="outlined" size="small" label={`#${hashtag.name}`} />
                   </Grid>

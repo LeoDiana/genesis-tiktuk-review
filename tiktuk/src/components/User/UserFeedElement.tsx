@@ -2,7 +2,6 @@ import React from 'react';
 import ReactPlayer from 'react-player';
 import { Grid, Typography } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import { shortenNumber } from '../../common/utils';
 import Preloader from '../Preloader/Preloader';
 
 interface UserFeedElementProps {
@@ -20,7 +19,7 @@ const UserFeedElement = ({
   <Grid item>
     <Grid item container xs="auto" justifyContent="center">
       <PlayArrowIcon />
-      <Typography>{shortenNumber(playCount)}</Typography>
+      <Typography>{Intl.NumberFormat('en', {notation: 'compact'}).format(playCount)}</Typography>
     </Grid>
     {!videoUrl ? <Preloader />
       : (
