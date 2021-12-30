@@ -33,13 +33,12 @@ const Feed = ({ postsPerPage, postsCount }: FeedProp) => {
     setPlayingVideo(id);
   };
 
+  const postsOnPage = posts.slice(postsPerPage * (currentPage - 1), postsPerPage * currentPage);
   return (
     <>
       <Grid container direction="column" alignContent="center" spacing={2}>
-        {posts.length > 0 ? (
-          posts
-            .slice(postsPerPage * (currentPage - 1), postsPerPage * currentPage)
-            .map((post) => (
+        {postsOnPage.length ? (
+          postsOnPage.map((post) => (
               <Grid item key={post.id}>
                 <Post
                   {...post}

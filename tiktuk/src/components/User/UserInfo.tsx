@@ -8,7 +8,7 @@ import {
   CardContent,
 } from "@mui/material";
 import { getUserInfo } from "../../api/apiCalls";
-import { shortenNumber } from "../../common/utils";
+import { useShorterNumber } from "../../common/hooks";
 
 interface UserInfoProps {
   username: string;
@@ -53,7 +53,7 @@ const UserInfo = (props: UserInfoProps) => {
     };
 
     getInfo();
-  }, []);
+  }, [username]);
 
   return (
     <Card sx={{ maxWidth: 500 }}>
@@ -70,25 +70,19 @@ const UserInfo = (props: UserInfoProps) => {
         <Grid container justifyContent="space-around">
           <Grid item xs={4} alignItems="center" container direction="column">
             <Typography fontWeight={600}>
-              {Intl.NumberFormat("en", { notation: "compact" }).format(
-                userInfo.followingCount
-              )}
+              {useShorterNumber(userInfo.followingCount)}
             </Typography>
             <Typography>Following</Typography>
           </Grid>
           <Grid item xs={4} alignItems="center" container direction="column">
             <Typography fontWeight={600}>
-              {Intl.NumberFormat("en", { notation: "compact" }).format(
-                userInfo.followerCount
-              )}
+              {useShorterNumber(userInfo.followerCount)}
             </Typography>
             <Typography>Followers</Typography>
           </Grid>
           <Grid item xs={4} alignItems="center" container direction="column">
             <Typography fontWeight={600}>
-              {Intl.NumberFormat("en", { notation: "compact" }).format(
-                userInfo.heartCount
-              )}
+              {useShorterNumber(userInfo.heartCount)}
             </Typography>
             <Typography>Likes</Typography>
           </Grid>

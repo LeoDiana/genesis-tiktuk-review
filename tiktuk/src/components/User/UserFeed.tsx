@@ -22,7 +22,7 @@ const UserFeed = (props : UserFeedProps) => {
     };
 
     getItem();
-  }, []);
+  }, [username]);
 
   const onVideoClick = (id:string) => {
     setPlayingVideo((currId) => (currId === id ? '' : id));
@@ -40,7 +40,7 @@ const UserFeed = (props : UserFeedProps) => {
                 key={post.id}
                 videoUrl={videoUrl}
                 playCount={post.stats.playCount}
-                playing={!!(playingVideo === post.id)}
+                playing={playingVideo === post.id}
                 videoId={post.id}
                 onClick={onVideoClick}
               />

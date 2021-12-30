@@ -1,4 +1,3 @@
-/* eslint-disable import/no-named-default */
 import {
   TrendingFeedItem,
   UserInfoResponse,
