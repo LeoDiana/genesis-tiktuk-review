@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Pagination, Grid } from "@mui/material";
+import InView from "react-intersection-observer";
 
 import Post from "../components/Post/Post";
 import { getTrendingFeed } from "../api/apiCalls";
@@ -43,13 +44,22 @@ const Feed = ({ postsPerPage, postsCount }: FeedProp) => {
         {postsOnPage.length ? (
           postsOnPage.map((post) => (
             <Grid item key={post.id}>
-              <Post
-                {...post}
-                onClick={onVideoClick}
-                inView={videoinView}
-                playing={playingVideo === post.id}
-                videoId={post.id}
-              />
+              <InView
+                threshold={0.8}
+                as="div"
+                onChange={(isInView, entry) => {
+                  if (isInView) {
+                    videoinView(post.id);
+                  }
+                }}
+              >
+                <Post
+                  {...post}
+                  onClick={onVideoClick}
+                  playing={playingVideo === post.id}
+                  videoId={post.id}
+                />
+              </InView>
             </Grid>
           ))
         ) : (

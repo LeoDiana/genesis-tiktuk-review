@@ -37,15 +37,17 @@ const UserInfo = ({ username = "" }) => {
   useEffect(() => {
     const getInfo = async () => {
       const response = await getUserInfo(username);
-      setUserInfo({
-        uniqueId: response.user.uniqueId,
-        nickname: response.user.nickname,
-        signature: response.user.signature,
-        avatar: response.user.avatarThumb,
-        followerCount: response.stats.followerCount,
-        followingCount: response.stats.followingCount,
-        heartCount: response.stats.heartCount,
-      });
+      if (response.hasOwnProperty("user") && response.hasOwnProperty("stats")) {
+        setUserInfo({
+          uniqueId: response.user.uniqueId,
+          nickname: response.user.nickname,
+          signature: response.user.signature,
+          avatar: response.user.avatarThumb,
+          followerCount: response.stats.followerCount,
+          followingCount: response.stats.followingCount,
+          heartCount: response.stats.heartCount,
+        });
+      }
     };
 
     getInfo();
