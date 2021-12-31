@@ -1,12 +1,10 @@
-import React from 'react';
-import {
-  BrowserRouter, Route, Routes,
-} from 'react-router-dom';
-import './App.css';
-import ErrorHandler from './components/ErrorHandler/ErrorHandler';
-import Navbar from './components/NavBar/NavBar';
-import Feed from './pages/Feed';
-import UserPage from './pages/UserPage';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import ErrorHandler from "./components/ErrorHandler/ErrorHandler";
+import Navbar from "./components/NavBar/NavBar";
+import Feed from "./pages/Feed";
+import UserPage from "./pages/UserPage";
 
 const App = () => (
   <BrowserRouter>

@@ -1,16 +1,16 @@
-import { CardHeader, Avatar, Typography } from '@mui/material';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { makeStyles } from '@mui/styles';
+import React from "react";
+import { CardHeader, Avatar, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   myTextStyle: {
-    '&:link': {
-      textDecoration: 'none',
-      color: 'black',
+    "&:link": {
+      textDecoration: "none",
+      color: "black",
     },
-    '&:visited': {
-      color: 'black',
+    "&:visited": {
+      color: "black",
     },
   },
 });
@@ -24,24 +24,18 @@ const UserHeader = ({ avatar, username, title }: UserHeaderProps) => {
   const classes = useStyles();
   return (
     <CardHeader
-      avatar={(
+      avatar={
         <NavLink to={`/user/${username}`}>
-          <Avatar
-            alt={username}
-            src={avatar}
-          />
+          <Avatar alt={username} src={avatar} />
         </NavLink>
-    )}
-      title={(
+      }
+      title={
         <NavLink to={`/user/${username}`} className={classes.myTextStyle}>
-          <Typography
-            align="left"
-            fontWeight={600}
-          >
+          <Typography align="left" fontWeight={600}>
             {username}
           </Typography>
         </NavLink>
-    )}
+      }
       subheader={<Typography align="left">{title}</Typography>}
     />
   );

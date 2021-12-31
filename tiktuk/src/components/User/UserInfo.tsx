@@ -7,12 +7,9 @@ import {
   Grid,
   CardContent,
 } from "@mui/material";
+
 import { getUserInfo } from "../../api/apiCalls";
 import { useShorterNumber } from "../../common/hooks";
-
-interface UserInfoProps {
-  username: string;
-}
 
 interface UserInfoState {
   uniqueId: string;
@@ -24,7 +21,7 @@ interface UserInfoState {
   heartCount: number;
 }
 
-const UserInfo = (props: UserInfoProps) => {
+const UserInfo = ({ username = "" }) => {
   const initialUserInfoState = {
     uniqueId: "",
     nickname: "",
@@ -36,7 +33,6 @@ const UserInfo = (props: UserInfoProps) => {
   } as UserInfoState;
 
   const [userInfo, setUserInfo] = useState<UserInfoState>(initialUserInfoState);
-  const { username } = props;
 
   useEffect(() => {
     const getInfo = async () => {

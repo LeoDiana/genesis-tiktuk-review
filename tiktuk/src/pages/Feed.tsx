@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { Typography, Pagination, Grid } from "@mui/material";
+
 import Post from "../components/Post/Post";
 import { getTrendingFeed } from "../api/apiCalls";
 import { TrendingFeedItem } from "../common/types";
@@ -33,22 +33,25 @@ const Feed = ({ postsPerPage, postsCount }: FeedProp) => {
     setPlayingVideo(id);
   };
 
-  const postsOnPage = posts.slice(postsPerPage * (currentPage - 1), postsPerPage * currentPage);
+  const postsOnPage = posts.slice(
+    postsPerPage * (currentPage - 1),
+    postsPerPage * currentPage
+  );
   return (
     <>
       <Grid container direction="column" alignContent="center" spacing={2}>
         {postsOnPage.length ? (
           postsOnPage.map((post) => (
-              <Grid item key={post.id}>
-                <Post
-                  {...post}
-                  onClick={onVideoClick}
-                  inView={videoinView}
-                  playing={playingVideo === post.id}
-                  videoId={post.id}
-                />
-              </Grid>
-            ))
+            <Grid item key={post.id}>
+              <Post
+                {...post}
+                onClick={onVideoClick}
+                inView={videoinView}
+                playing={playingVideo === post.id}
+                videoId={post.id}
+              />
+            </Grid>
+          ))
         ) : (
           <Typography>Loading...</Typography>
         )}
